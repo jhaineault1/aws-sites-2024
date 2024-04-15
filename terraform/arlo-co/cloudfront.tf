@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "www_s3_distribution" {
   origin {
-    domain_name = aws_s3_bucket.www_bucket.bucket_regional_domain_name
+    domain_name = aws_s3_bucket.www_bucket.bucket
     origin_id   = "S3-www.${var.bucket_name}"
 
     custom_origin_config {
@@ -21,7 +21,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
     error_caching_min_ttl = 0
     error_code            = 404
     response_code         = 200
-    response_page_path    = "/404.html"
+    response_page_path    = "/error.html"
   }
 
   default_cache_behavior {
