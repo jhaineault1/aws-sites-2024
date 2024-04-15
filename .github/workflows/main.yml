@@ -26,6 +26,8 @@ jobs:
       - name: Deploy static site to S3 bucket
         run: aws s3 sync ./arlo-co.com s3://arlo-co.com --delete
 
+      - name: Clear Cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id E35G6ANT6H3J1 --paths "/*";
   # Invalidate_CloudFront:
   #   name: Invalidate CloudFront Distribution
   #   needs: Sync_S3
