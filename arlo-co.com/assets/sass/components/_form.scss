@@ -90,7 +90,7 @@ textarea {
     "transition",
     (
       "border-color #{_duration(transition)} ease-in-out",
-      "box-shadow #{_duration(transition)} ease-in-out",
+      //   "box-shadow #{_duration(transition)} ease-in-out",
       "background-color #{_duration(transition)} ease-in-out"
     )
   );
@@ -181,7 +181,7 @@ input[type="radio"] {
         "transition",
         (
           "border-color #{_duration(transition)} ease-in-out",
-          "box-shadow #{_duration(transition)} ease-in-out",
+          //   "box-shadow #{_duration(transition)} ease-in-out",
           "background-color #{_duration(transition)} ease-in-out"
         )
       );
