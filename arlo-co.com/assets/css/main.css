@@ -184,8 +184,8 @@ html {
 }
 
 body {
-  background-image: url("../../images/bg.jpg");
-  background: #cae9ff;
+  /* background-image: url("../../images/bg.jpg"); */
+  background: #b3cde0;
 }
 
 body.is-preload *,
@@ -275,7 +275,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #ffea00;
+  color: #07607b;
   font-weight: 600;
   line-height: 1.5;
   margin: 0 0 1rem 0;
@@ -760,7 +760,7 @@ input[type="radio"] + label:before {
 
 .image:before {
   pointer-events: none;
-  background-image: url("../../images/bg.jpg");
+  background-image: url("../images/bg.jpg");
   background: #b3cde0;
   border-radius: 4px;
   content: "";
@@ -1256,7 +1256,7 @@ button {
       rgba(19, 21, 25, 0.5),
       rgba(19, 21, 25, 0.5)
     ),
-    url("../../images/overlay.png");
+    url("../images/overlay.png");
   background-size: auto, 256px 256px;
   background-position: center, center;
   background-repeat: no-repeat, repeat;
