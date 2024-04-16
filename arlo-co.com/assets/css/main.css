@@ -185,6 +185,8 @@ html {
 
 body {
   background-image: url("../../images/bg.jpg");
+  background-size: cover; /* Cover the entire screen */
+  background-repeat: no-repeat;
   /* background: #b3cde0; */
 }
 
