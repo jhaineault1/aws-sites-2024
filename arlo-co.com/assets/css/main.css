@@ -370,7 +370,7 @@ blockquote {
 }
 
 code {
-  background: rgba(255, 255, 255, 0.075);
+  /* background: rgba(255, 255, 255, 0.075); */
   border-radius: 4px;
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
@@ -537,7 +537,7 @@ input[type="email"]:focus,
 input[type="tel"]:focus,
 select:focus,
 textarea:focus {
-  background: rgba(255, 255, 255, 0.075);
+  /* background: rgba(255, 255, 255, 0.075); */
   border-color: #ffffff;
   /* box-shadow: 0 0 0 1px #ffffff; */
 }
@@ -655,7 +655,7 @@ input[type="radio"]:checked + label:before {
 
 input[type="checkbox"]:focus + label:before,
 input[type="radio"]:focus + label:before {
-  background: rgba(255, 255, 255, 0.075);
+  /* background: rgba(255, 255, 255, 0.075); */
   border-color: #ffffff;
   box-shadow: 0 0 0 1px #ffffff;
 }
