@@ -553,7 +553,7 @@ select {
 
 select option {
   color: #ffffff;
-  background: #1b1f22;
+  background: #c7e8f2;
 }
 
 select:focus::-ms-value {
@@ -647,7 +647,7 @@ input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
   background: #ffffff !important;
   border-color: #ffffff !important;
-  color: #1b1f22;
+  color: #c7e8f2;
   content: "\f00c";
 }
 
@@ -1189,7 +1189,7 @@ input[type="button"].primary,
 button.primary,
 .button.primary {
   background-color: #ffffff;
-  color: #1b1f22 !important;
+  color: #c7e8f2 !important;
   font-weight: 600;
 }
 
