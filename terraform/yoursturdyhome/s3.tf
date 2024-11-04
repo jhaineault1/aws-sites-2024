@@ -13,11 +13,11 @@ resource "aws_s3_bucket_policy" "www_bucket_policy" {
 }
 
 # S3 bucket ACL
-resource "aws_s3_bucket_acl" "www_bucket_acl" {
-  bucket = aws_s3_bucket.www_bucket.id
-
-  acl = "public-read"
-}
+# resource "aws_s3_bucket_acl" "www_bucket_acl" {
+#   bucket = aws_s3_bucket.www_bucket.id
+#
+#   acl = "public-read"
+# }
 
 # S3 bucket CORS configuration
 resource "aws_s3_bucket_cors_configuration" "www_bucket_cors_configuration" {
@@ -51,11 +51,11 @@ resource "aws_s3_bucket" "root_bucket" {
 }
 
 # S3 bucket ACL
-resource "aws_s3_bucket_acl" "root_bucket_acl" {
-  bucket = aws_s3_bucket.root_bucket.id
-
-  acl = "public-read"
-}
+# resource "aws_s3_bucket_acl" "root_bucket_acl" {
+#   bucket = aws_s3_bucket.root_bucket.id
+#
+#   acl = "public-read"
+# }
 
 # S3 bucket website configuration
 resource "aws_s3_bucket_website_configuration" "root_bucket_website_configuration" {
