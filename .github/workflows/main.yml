@@ -10,9 +10,9 @@ on:
 
 jobs:
   build-arlo-co:
+    if: contains(github.event.head_commit.message, 'arlo-co.com')
     runs-on: ubuntu-latest
     name: Deploy arlo-co.com
-    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Deploy arlo-co.com')
 
     steps:
       - name: Checkout Repo
@@ -35,9 +35,9 @@ jobs:
         run: aws cloudfront create-invalidation --distribution-id E35G6ANT6H3J1 --paths "/*"
 
   build-yoursturdyhome:
+    if: contains(github.event.head_commit.message, 'yoursturdyhome.com')
     runs-on: ubuntu-latest
     name: Deploy yoursturdyhome.com
-    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Deploy yoursturdyhome.com')
 
     steps:
       - name: Checkout Repo
