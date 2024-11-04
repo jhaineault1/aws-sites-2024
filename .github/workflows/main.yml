@@ -12,7 +12,7 @@ jobs:
   build-arlo-co:
     runs-on: ubuntu-latest
     name: Deploy arlo-co.com
-    if: contains(github.ref, 'main') && github.event_name == 'push' && github.event.head_commit.added.* matches 'arlo-co.com/**'
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Deploy arlo-co.com')
 
     steps:
       - name: Checkout Repo
@@ -37,7 +37,7 @@ jobs:
   build-yoursturdyhome:
     runs-on: ubuntu-latest
     name: Deploy yoursturdyhome.com
-    if: contains(github.ref, 'main') && github.event_name == 'push' && github.event.head_commit.added.* matches 'yoursturdyhome.com/**'
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Deploy yoursturdyhome.com')
 
     steps:
       - name: Checkout Repo
