@@ -4,10 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'arlo-co.com/**'
+      - 'yoursturdyhome.com/**'
 
 jobs:
-  build:
+  build-arlo-co:
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, 'arlo-co.com')
     runs-on: ubuntu-latest
+    name: Deploy arlo-co.com
 
     steps:
       - name: Checkout Repo
@@ -20,60 +25,36 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Deploy static site to S3 bucket
+      - name: Deploy arlo-co.com to S3 bucket (www)
         run: aws s3 sync ./arlo-co.com s3://www.arlo-co.com --delete
 
-      - name: Deploy static site to S3 bucket
+      - name: Deploy arlo-co.com to S3 bucket (root)
         run: aws s3 sync ./arlo-co.com s3://arlo-co.com --delete
 
-      - name: Clear Cloudfront cache
-        run: aws cloudfront create-invalidation --distribution-id E35G6ANT6H3J1 --paths "/*";
-  # Invalidate_CloudFront:
-  #   name: Invalidate CloudFront Distribution
-  #   needs: Sync_S3
-  #   runs-on: ubuntu-latest
+      - name: Clear CloudFront cache for arlo-co.com
+        run: aws cloudfront create-invalidation --distribution-id E35G6ANT6H3J1 --paths "/*"
 
-  #   steps:
-  #     - name: Invalidate CloudFront
-  #       uses: chetan/invalidate-cloudfront-action@v2
+  build-yoursturdyhome:
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, 'yoursturdyhome.com')
+    runs-on: ubuntu-latest
+    name: Deploy yoursturdyhome.com
 
-  #       env:
-  #         DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
-  #         PATHS: "/*"
-  #         AWS_REGION: "us-east-1"
-  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-  # - name: Deploy static site to S3 bucket
-  #   run: aws s3 sync ./your-sturdy-home/static s3://www.yoursturdyhome.com --delete
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-  # - name: Deploy static site to S3 bucket
-  #   run: aws s3 sync ./jh-portfolio/static s3://www.jh-portfolio.com --delete
+      - name: Deploy yoursturdyhome.com to S3 bucket (www)
+        run: aws s3 sync ./yoursturdyhome.com s3://www.yoursturdyhome.com --delete
 
-  # - name: Terraform Init
-  #   uses: hashicorp/terraform-github-actions/init@v0.4.0
-  #   env:
-  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     TF_ACTION_WORKING_DIR: 'terraform'
-  #     AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Deploy yoursturdyhome.com to S3 bucket (root)
+        run: aws s3 sync ./yoursturdyhome.com s3://yoursturdyhome.com --delete
 
-  # - name: Terraform Validate
-  #   uses: hashicorp/terraform-github-actions/validate@v0.3.7
-
-  # - name: Terraform Apply
-  #   uses: hashicorp/terraform-github-actions/apply@v0.4.0
-  #   env:
-  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     TF_ACTION_WORKING_DIR: 'terraform'
-  #     AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-  # - name: Sync S3
-  #   uses: jhaineault1/s3-sync-action@master
-  #   env:
-  #     SOURCE_DIR: '../src'
-  #     AWS_REGION: 'us-east-1'
-  #     AWS_S3_BUCKET: 'your-sturdy-home'
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Clear CloudFront cache for yoursturdyhome.com
+        run: aws cloudfront create-invalidation --distribution-id [YOUR_DISTRIBUTION_ID_FOR_YOURSTURDYHOME] --paths "/*"
