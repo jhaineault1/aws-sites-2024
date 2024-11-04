@@ -57,4 +57,4 @@ jobs:
         run: aws s3 sync ./yoursturdyhome.com s3://yoursturdyhome.com --delete
 
       - name: Clear CloudFront cache for yoursturdyhome.com
-        run: aws cloudfront create-invalidation --distribution-id [YOUR_DISTRIBUTION_ID_FOR_YOURSTURDYHOME] --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id E3BBMVKN7MAT8C --paths "/*"
