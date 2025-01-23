@@ -117,8 +117,8 @@ body {
 .center-image {
   display: block; /* Ensure it's treated as a block-level element */
   margin: 0 auto; /* Centers it horizontally */
-  width: 200px; /* Explicit size */
-  height: 200px;
+  width: 250px; /* Explicit size */
+  height: 250px;
 }
 
 ol,
