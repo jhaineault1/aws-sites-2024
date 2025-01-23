@@ -114,6 +114,13 @@ body {
   line-height: 1;
 }
 
+.center-image {
+  display: block; /* Ensure it's treated as a block-level element */
+  margin: 0 auto; /* Centers it horizontally */
+  width: 200px; /* Explicit size */
+  height: 200px;
+}
+
 ol,
 ul {
   list-style: none;
