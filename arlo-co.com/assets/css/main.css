@@ -114,6 +114,14 @@ body {
   line-height: 1;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Full height on all devices */
+  width: 100%; /* Full width on all devices */
+  overflow: hidden; /* Prevent scrolling */
+}
+
 ol,
 ul {
   list-style: none;
