@@ -119,6 +119,7 @@ body {
   margin: 0 auto; /* Centers it horizontally */
   width: 150px; /* Explicit size */
   height: 150px;
+  object-fit: cover;
 }
 
 ol,
