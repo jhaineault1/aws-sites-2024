@@ -60,7 +60,6 @@ jobs:
       - name: Clear CloudFront cache for jeffersonenterprise.arlo-co.com
         run: aws cloudfront create-invalidation --distribution-id EP4ELJOZQJ02T --paths "/*"
 
-
   build-yoursturdyhome:
     if: contains(github.event.head_commit.message, 'yoursturdyhome.com')
     runs-on: ubuntu-latest
