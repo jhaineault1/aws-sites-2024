@@ -52,13 +52,13 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy jeffersonenterprise.arlo-co.com to S3 bucket (www)
-        run: aws s3 sync ./arlo-co.com s3://www.jeffersonenterprise.arlo-co.com --delete
+        run: aws s3 sync ./jeffersonenterprise.arlo-co.com s3://www.jeffersonenterprise.arlo-co.com --delete
 
       - name: Deploy jeffersonenterprise.arlo-co.com to S3 bucket (root)
         run: aws s3 sync ./jeffersonenterprise.arlo-co.com s3://jeffersonenterprise.arlo-co.com --delete
 
       - name: Clear CloudFront cache for jeffersonenterprise.arlo-co.com
-        run: aws cloudfront create-invalidation --distribution-id E35G6ANT6H3J1 --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id EP4ELJOZQJ02T --paths "/*"
 
 
   build-yoursturdyhome:
