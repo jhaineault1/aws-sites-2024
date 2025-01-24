@@ -7,6 +7,7 @@ on:
     paths:
       - 'arlo-co.com/**'
       - 'yoursturdyhome.com/**'
+      - 'jeffersonenterprise.arlo-co.com/**'
 
 jobs:
   build-arlo-co:
