@@ -30,14 +30,15 @@
 							</ul>
 						</nav>
 						<!-- Audio Player -->
-						<div class="audio-player" style="margin-top: 2em; text-align: center;">
-							<div class="player-controls" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
-								<audio id="audio-player" controls autoplay>
-									Your browser does not support the audio element.
-								</audio>
-								<button id="next-btn">&#9655;</button>
+						<div class="audio-player" style="margin-top: 2em; text-align: center; position: relative;">
+							<audio id="audio-player" controls autoplay style="width: 100%;">
+								Your browser does not support the audio element.
+							</audio>
+							<div class="player-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+								<button id="prev-btn" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">&#9665;</button>
+								<button id="next-btn" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">&#9655;</button>
 							</div>
-							
+
 							<ul class="playlist" style="display: none;">
 								<li data-src="songs/nye.m4a">NYE</li>
 								<li data-src="songs/Horns.m4a">Evening Stroll</li>
