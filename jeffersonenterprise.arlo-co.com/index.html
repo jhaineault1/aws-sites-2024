@@ -30,16 +30,16 @@
 							</ul>
 						</nav>
 						<!-- Audio Player -->
-						<div class="audio-player">
-							<audio id="audio-player" controls>
+						<div class="audio-player" style="margin-top: 2em;">
+							<audio id="audio-player" controls autoplay>
 								Your browser does not support the audio element.
 							</audio>
 							
 							<ul class="playlist">
 								<!-- Add your tracks here -->
-								<li data-src="songs/nye.m4a">NYE</li>
-								<li data-src="songs/Horns.m4a">Evening Stroll</li>
-								<li data-src="songs/Time_Traveler.m4a">Time Traveler</li>
+								<li data-src="songs/nye.m4a"></li>
+								<li data-src="songs/Horns.m4a"></li>
+								<li data-src="songs/Time_Traveler.m4a"></li>
 							</ul>
 						</div>
 					</header>
@@ -70,6 +70,9 @@
 			if (tracks.length > 0) {
 				tracks[0].classList.add('active');
 				audioPlayer.src = tracks[0].dataset.src;
+				audioPlayer.play().catch(function(error) {
+					console.log("Autoplay prevented by browser");
+				});
 			}
 			
 			// Play/Pause button
