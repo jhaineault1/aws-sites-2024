@@ -20,12 +20,33 @@
 				<!-- Header -->
 					<header id="header">
 						<h1>Jefferson Enterprise</h1>
-						<p>Musician &nbsp;&bull;&nbsp; Cloud Engineer &nbsp;&bull;&nbsp; Never asked for this</p>
+						<p>Musician &nbsp;&bull;&nbsp; Cloud/Data Engineer &nbsp;&bull;&nbsp; </p>
+						<!-- Audio Player -->
+						<div class="audio-player">
+							<audio id="audio-player" controls>
+								Your browser does not support the audio element.
+							</audio>
+							
+							<ul class="playlist">
+								<!-- Add your tracks here -->
+								<li data-src="songs/nye.m4a">NYE</li>
+								<li data-src="songs/Horns.m4a">Evening Stroll</li>
+								<li data-src="songs/Time_Traveler.m4a">Time Traveler</li>
+							</ul>
+							
+							<div class="audio-controls">
+								<button class="prev-btn">Previous</button>
+								<button class="play-btn">Play</button>
+								<button class="next-btn">Next</button>
+							</div>
+						</div>
 						<nav>
 							<ul>
-								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								<li><a href="https://github.com/jhaineault1" class="icon brands fa-github"><span class="label">Github</span></a></li>
+								<li><a href="https://www.linkedin.com/in/jeff-haineault/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://open.spotify.com/artist/2ZESahxZWyKcj7UqJKwdZ9?si=0-feGP10REWXUiwOX-e56Q" class="icon brands fa-spotify"><span class="label">Spotify-Ninja Gun</span></a></li>
+								<li><a href="https://open.spotify.com/artist/6EH7Zs3XwdE2IVNVqPUeu0?si=op22j_OmT6SZQ9Yk533GCQ" class="icon brands fa-spotify"><span class="label">Spotify-New Natives</span></a></li>																
+								<li><a href="jhaineault1@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
 						</nav>
 					</header>
@@ -41,6 +62,68 @@
 			window.onload = function() { document.body.classList.remove('is-preload'); }
 			window.ontouchmove = function() { return false; }
 			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+		<!-- Audio Player JavaScript -->
+		<script>
+			const audioPlayer = document.querySelector('#audio-player');
+			const playlist = document.querySelector('.playlist');
+			const playBtn = document.querySelector('.play-btn');
+			const prevBtn = document.querySelector('.prev-btn');
+			const nextBtn = document.querySelector('.next-btn');
+			const tracks = playlist.querySelectorAll('li');
+			let currentTrack = 0;
+			
+			// Initialize the first track
+			if (tracks.length > 0) {
+				tracks[0].classList.add('active');
+				audioPlayer.src = tracks[0].dataset.src;
+			}
+			
+			// Play/Pause button
+			playBtn.addEventListener('click', () => {
+				if (audioPlayer.paused) {
+					audioPlayer.play();
+					playBtn.textContent = 'Pause';
+				} else {
+					audioPlayer.pause();
+					playBtn.textContent = 'Play';
+				}
+			});
+			
+			// Previous track
+			prevBtn.addEventListener('click', () => {
+				currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+				playTrack(currentTrack);
+			});
+			
+			// Next track
+			nextBtn.addEventListener('click', () => {
+				currentTrack = (currentTrack + 1) % tracks.length;
+				playTrack(currentTrack);
+			});
+			
+			// Play specific track when clicked
+			tracks.forEach((track, index) => {
+				track.addEventListener('click', () => {
+					currentTrack = index;
+					playTrack(currentTrack);
+				});
+			});
+			
+			// Auto-play next track when current track ends
+			audioPlayer.addEventListener('ended', () => {
+				currentTrack = (currentTrack + 1) % tracks.length;
+				playTrack(currentTrack);
+			});
+			
+			// Function to play a track
+			function playTrack(index) {
+				tracks.forEach(track => track.classList.remove('active'));
+				tracks[index].classList.add('active');
+				audioPlayer.src = tracks[index].dataset.src;
+				audioPlayer.play();
+				playBtn.textContent = 'Pause';
+			}
 		</script>
 	</body>
 </html>
