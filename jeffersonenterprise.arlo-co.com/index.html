@@ -30,12 +30,16 @@
 							</ul>
 						</nav>
 						<!-- Audio Player -->
-						<div class="audio-player" style="margin-top: 2em;">
-							<audio id="audio-player" controls autoplay>
-								Your browser does not support the audio element.
-							</audio>
-							<ul class="playlist">
-								<!-- Add your tracks here -->
+						<div class="audio-player" style="margin-top: 2em; text-align: center;">
+							<div class="player-controls" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+								<button id="prev-btn">&#9665;</button>
+								<audio id="audio-player" controls autoplay>
+									Your browser does not support the audio element.
+								</audio>
+								<button id="next-btn">&#9655;</button>
+							</div>
+							
+							<ul class="playlist" style="display: none;">
 								<li data-src="songs/nye.m4a">NYE</li>
 								<li data-src="songs/Horns.m4a">Evening Stroll</li>
 								<li data-src="songs/Time_Traveler.m4a">Time Traveler</li>
@@ -59,65 +63,36 @@
 		<script>
 			const audioPlayer = document.querySelector('#audio-player');
 			const playlist = document.querySelector('.playlist');
-			const playBtn = document.querySelector('.play-btn');
-			const prevBtn = document.querySelector('.prev-btn');
-			const nextBtn = document.querySelector('.next-btn');
+			const prevBtn = document.querySelector('#prev-btn');
+			const nextBtn = document.querySelector('#next-btn');
 			const tracks = playlist.querySelectorAll('li');
 			let currentTrack = 0;
-			
-			// Initialize the first track
+		
 			if (tracks.length > 0) {
 				tracks[0].classList.add('active');
 				audioPlayer.src = tracks[0].dataset.src;
-				audioPlayer.play().catch(function(error) {
-					console.log("Autoplay prevented by browser");
-				});
 			}
-			
-			// Play/Pause button
-			playBtn.addEventListener('click', () => {
-				if (audioPlayer.paused) {
-					audioPlayer.play();
-					playBtn.textContent = 'Pause';
-				} else {
-					audioPlayer.pause();
-					playBtn.textContent = 'Play';
-				}
-			});
-			
-			// Previous track
+		
 			prevBtn.addEventListener('click', () => {
 				currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
 				playTrack(currentTrack);
 			});
-			
-			// Next track
+		
 			nextBtn.addEventListener('click', () => {
 				currentTrack = (currentTrack + 1) % tracks.length;
 				playTrack(currentTrack);
 			});
-			
-			// Play specific track when clicked
-			tracks.forEach((track, index) => {
-				track.addEventListener('click', () => {
-					currentTrack = index;
-					playTrack(currentTrack);
-				});
-			});
-			
-			// Auto-play next track when current track ends
+		
 			audioPlayer.addEventListener('ended', () => {
 				currentTrack = (currentTrack + 1) % tracks.length;
 				playTrack(currentTrack);
 			});
-			
-			// Function to play a track
+		
 			function playTrack(index) {
 				tracks.forEach(track => track.classList.remove('active'));
 				tracks[index].classList.add('active');
 				audioPlayer.src = tracks[index].dataset.src;
 				audioPlayer.play();
-				playBtn.textContent = 'Pause';
 			}
 		</script>
 	</body>
