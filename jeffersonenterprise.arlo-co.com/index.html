@@ -20,14 +20,31 @@
 				<!-- Header -->
 					<header id="header">
 						<h1>Jefferson Enterprise</h1>
-						<p>Musician &nbsp;&bull;&nbsp; Cloud Engineer &nbsp;&bull;&nbsp; Never asked for this</p>
+						<p>Musician &nbsp;&bull;&nbsp; Cloud/Data Engineer</p>
 						<nav>
 							<ul>
-								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								<li><a href="https://github.com/jhaineault1" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
+								<li><a href="https://www.linkedin.com/in/jeff-haineault/" class="icon brands fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://open.spotify.com/artist/2ZESahxZWyKcj7UqJKwdZ9?si=0-feGP10REWXUiwOX-e56Q" class="icon brands fa-spotify" target="_blank"><span class="label">Spotify-Ninja Gun</span></a></li>
+								<li><a href="mailto:jhaineault1@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
 						</nav>
+						<!-- Audio Player -->
+						<div class="audio-player" style="margin-top: 2em; text-align: center; position: relative; max-width: 400px; margin-left: auto; margin-right: auto;">
+							<audio id="audio-player" controls autoplay style="width: 100%;">
+								Your browser does not support the audio element.
+							</audio>
+							<div class="player-controls" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+								<button id="prev-btn" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">&#9665;</button>
+								<button id="next-btn" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">&#9655;</button>
+							</div>
+
+							<ul class="playlist" style="display: none;">
+								<li data-src="songs/nye.m4a">NYE</li>
+								<li data-src="songs/Horns.m4a">Evening Stroll</li>
+								<li data-src="songs/Time_Traveler.m4a">Time Traveler</li>
+							</ul>
+						</div>
 					</header>
 
 				<!-- Footer -->
@@ -41,6 +58,42 @@
 			window.onload = function() { document.body.classList.remove('is-preload'); }
 			window.ontouchmove = function() { return false; }
 			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+		<!-- Audio Player JavaScript -->
+		<script>
+			const audioPlayer = document.querySelector('#audio-player');
+			const playlist = document.querySelector('.playlist');
+			const prevBtn = document.querySelector('#prev-btn');
+			const nextBtn = document.querySelector('#next-btn');
+			const tracks = playlist.querySelectorAll('li');
+			let currentTrack = 0;
+		
+			if (tracks.length > 0) {
+				tracks[0].classList.add('active');
+				audioPlayer.src = tracks[0].dataset.src;
+			}
+		
+			prevBtn.addEventListener('click', () => {
+				currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+				playTrack(currentTrack);
+			});
+		
+			nextBtn.addEventListener('click', () => {
+				currentTrack = (currentTrack + 1) % tracks.length;
+				playTrack(currentTrack);
+			});
+		
+			audioPlayer.addEventListener('ended', () => {
+				currentTrack = (currentTrack + 1) % tracks.length;
+				playTrack(currentTrack);
+			});
+		
+			function playTrack(index) {
+				tracks.forEach(track => track.classList.remove('active'));
+				tracks[index].classList.add('active');
+				audioPlayer.src = tracks[index].dataset.src;
+				audioPlayer.play();
+			}
 		</script>
 	</body>
 </html>
