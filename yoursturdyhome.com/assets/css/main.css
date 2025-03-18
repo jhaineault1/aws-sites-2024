@@ -826,6 +826,15 @@ input[type="radio"] + label:before {
   border-radius: 5px;  /* Optional: Adds rounded corners */
 }
 
+/* Ensure section headings span full width in the grid */
+.work-grid .work-section-title {
+  grid-column: span 2;  /* Span across both columns */
+  text-align: center;    /* Center the text */
+  font-size: 1.5em;      /* Adjust size as needed */
+  font-weight: bold;     /* Make it stand out */
+  margin: 20px 0;        /* Add spacing above and below */
+}
+
 @media screen and (max-width: 768px) {
   .work-grid {
       grid-template-columns: repeat(1, 1fr); /* Switch to 1 column for smaller screens */
