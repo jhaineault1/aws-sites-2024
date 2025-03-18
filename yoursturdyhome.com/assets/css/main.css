@@ -809,7 +809,15 @@ input[type="radio"] + label:before {
   width: 100%;
 }
 
-.image.main {
+#work .image.main img {
+  width: 70%; /* Adjust percentage as needed */
+  max-width: 600px; /* Set a max-width if needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto;
+}
+
+/* .image.main {
   display: block;
   margin: 2.5rem 0;
   width: 100%;
@@ -829,7 +837,7 @@ input[type="radio"] + label:before {
   .image.main {
     margin: 1.5rem 0;
   }
-}
+} */
 
 /* List */
 
