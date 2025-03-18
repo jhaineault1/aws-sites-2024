@@ -810,12 +810,15 @@ input[type="radio"] + label:before {
 }
 
 #work .image.main img {
-  width: 70%; /* Adjust percentage as needed */
-  max-width: 600px; /* Set a max-width if needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 70%; /* Ensures all images have the same width */
+  max-width: 600px; /* Restrict maximum size */
+  height: 400px; /* Forces all images to have the same height */
+  object-fit: cover; /* Ensures images maintain proportions and fill the area */
   display: block;
   margin: 0 auto;
+  border-radius: 5px; /* Optional: Adds rounded corners */
 }
+
 
 /* .image.main {
   display: block;
