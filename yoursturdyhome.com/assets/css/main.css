@@ -809,14 +809,27 @@ input[type="radio"] + label:before {
   width: 100%;
 }
 
-#work .image.main img {
-  width: 70%; /* Ensures all images have the same width */
-  max-width: 600px; /* Restrict maximum size */
-  height: 400px; /* Forces all images to have the same height */
-  object-fit: cover; /* Ensures images maintain proportions and fill the area */
+/* Two-column grid layout for Work images */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal-width columns */
+  gap: 15px; /* Add spacing between images */
+  width: 100%;
+}
+
+/* Ensure all images are the same size */
+.work-grid .image.work img {
+  width: 100%;         /* Ensures all images fill the grid cell */
+  height: 300px;       /* Set a fixed height for uniformity */
+  object-fit: cover;   /* Prevents distortion, crops if necessary */
   display: block;
-  margin: 0 auto;
-  border-radius: 5px; /* Optional: Adds rounded corners */
+  border-radius: 5px;  /* Optional: Adds rounded corners */
+}
+
+@media screen and (max-width: 768px) {
+  .work-grid {
+      grid-template-columns: repeat(1, 1fr); /* Switch to 1 column for smaller screens */
+  }
 }
 
 
